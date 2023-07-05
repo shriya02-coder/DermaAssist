@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/tailwind.min.css">
+        <style>
+            .box:hover {
+                border: 2px solid rgb(207, 207, 207);
+                transition: all 0.3s ease-in-out;
+            }  
+        </style>
+</head>
+<body class = "bg-gray-900">
+    <header class = "text-gray-400 bg-gray-900 body-font">
+      <div class = "container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a class = "flex title-font font-medium items-center text-white mb-4 md:mb-0">
+          <svg xmlns = "http://www.w3.org/2000/svg" fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox = "0 0 24 24">
+            <path d = "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          <span class = "ml-3 text-xl">DermaAssist</span>
+        </a>
+        <nav class = "md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <a href = "/dashboard" class = "mr-5 hover:text-white">Home</a>
+          <a href = "/profile" class = "mr-5 hover:text-white">Profile</a>
+        </nav>
+        <button onclick = "window.location.href='/'" class = "inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">Logout
+          <svg fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-4 h-4 ml-1" viewBox = "0 0 24 24">
+            <path d = "M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+  <section class = "text-gray-400 body-font bg-gray-900">
+    <div class = "container px-3 py-18 mx-auto">
+      <div class = "flex flex-wrap w-full mb-20 flex-col items-center text-center">
+        <h1 class = "sm:text-3xl text-2xl font-medium title-font mb-2 text-white">Welcome to DermaAssist</h1>
+        <p class = "lg:w-1/2 w-full leading-relaxed text-opacity-80">Hello Pathologist.</p>
+      </div>
+      <section class = "text-gray-400 body-font bg-gray-900">
+        <div class = "flex flex-wrap items-center justify-center">
+            <div class = "w-full md:w-1/2 p-4">
+              <a href = "{{url_for('doctor')}}" class = "block box border border-gray-700 border-opacity-75 p-6 rounded-lg hover:box">
+                <div class = "w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+                  <svg fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-6 h-6" viewBox = "0 0 24 24">
+                    <path d = "M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                  </svg>
+                </div>
+                <h2 class = "text-lg text-white font-medium title-font mb-2">Add a doctor</h2>
+                <p class = "leading-relaxed text-base">Click here to add a doctor.</p>
+              </a>
+            </div>
+            <div class = "w-full md:w-1/2 p-4">
+              <a href = "{{url_for('patient1')}}" class = "block box border border-gray-700 border-opacity-75 p-6 rounded-lg hover:box">
+                <div class = "w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+                  <svg fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-6 h-6" viewBox = "0 0 24 24">
+                    <circle cx = "6" cy = "6" r = "3"></circle>
+                    <circle cx = "6" cy = "18" r = "3"></circle>
+                    <path d = "M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+                  </svg>
+                </div>
+                <h2 class = "text-lg text-white font-medium title-font mb-2">Add a Patient</h2>
+                <p class = "leading-relaxed text-base">Click here to add a patient.</p>
+              </a>
+            </div>
+            <div class = "w-full md:w-1/2 p-4">
+              <div class = "relative">
+                <a href = "{{url_for('viewdoc')}}" class = "block box border border-gray-700 border-opacity-75 p-6 rounded-lg hover:box">
+                  <div class = "w-10 h-10 inline-flex items-center justify-center rounded-full bg-gray-800 text-indigo-400 mb-4">
+                    <svg fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-6 h-6" viewBox = "0 0 24 24">
+                      <path d = "M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                      <circle cx = "12" cy = "7" r = "4"></circle>
+                    </svg>
+                  </div>
+                  <h2 class = "text-lg text-white font-medium title-font mb-2">View Doctors</h2>
+                  <p class = "leading-relaxed text-base">Click here to view the list of doctors.</p>
+                </a>
+              </div>
+            </div>
+          </div>
+<footer class = "text-gray-600 body-font mt-36">
+  <div class = "container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <a class = "flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+      <svg xmlns = "http://www.w3.org/2000/svg" fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox = "0 0 24 24">
+        <path d = "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+      </svg>
+      <span class = "ml-3 text-xl">DermaAssist</span>
+    </a>
+    <p class = "text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 Project by —
+      <a href = "https://twitter.com/knyttneve" class = "text-gray-600 ml-1" rel = "noopener noreferrer" target = "_blank">Aryaman Tiwary, Shriya Pingulkar & Diti Divekar</a>
+    </p>
+    <span class = "inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+      <a class = "text-gray-500" href = "enter github" target = "_blank" rel = "noopener noreferrer">
+        <svg fill = "currentColor" viewBox = "0 0 24 24" class = "w-5 h-5">
+          <path fill-rule = "evenodd" clip-rule = "evenodd" d = "M12 0.2C5.77 0.2 0.2 5.77 0.2 12C0.2 17.88 4.58 23.2 10.2 24C10.8 24 11 23.8 11 23.2V20.2C7.2 20.6 6.6 18.6 6.6 18.6C6.2 17.4 5.4 17 5.4 17C4.6 16.6 5.6 16.6 5.6 16.6C6.6 16.8 7 17.8 7.4 18.2C8.8 19.8 10.6 19.4 11.2 19C11.4 18.2 11.8 17.8 12.2 17.6C8.8 17.2 5.4 15.8 5.4 11.4C5.4 10 5.8 8.8 6.4 7.8C6.2 7.4 5.8 6.4 6.4 4.8C6.4 4.8 7.2 4.4 11 6.6C12 6.4 13 6.4 14 6.4C15 6.4 16 6.4 17 6.6C20.8 4.4 21.6 4.8 21.6 4.8C22.2 6.4 21.8 7.4 21.6 7.8C22.2 8.8 22.6 10 22.6 11.4C22.6 15.8 19.2 17.2 15.8 17.6C16.2 18 16.6 19 16.6 20.2V23.2C16.6 23.8 16.8 24 17.4 24C23.98 23.19 28.4 17.88 28.4 12C28.4 5.77 22.83 0.2 16.6 0.2H12Z"/>
+        </svg>
+      </a>
+    </span>
+  </div>
+</footer>

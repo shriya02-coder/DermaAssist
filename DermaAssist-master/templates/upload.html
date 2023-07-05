@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = "UTF-8" />
+    <title>DermaAssist</title>
+    <link
+      rel = "stylesheet"
+      href = "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css"
+    />
+  </head>
+  <body class = "bg-gray-900">
+    <section class = "text-gray-400 bg-gray-900 body-font">
+      <div class = "container mx-auto flex flex-col md:flex-row items-center justify-center py-24 px-5">
+        <div class = "md:w-1/2 lg:pr-24 md:pr-16 flex flex-col items-start text-left mb-16 md:mb-0">
+          <h1 class = "title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
+            Upload Skin Lesion Image
+          </h1>
+          <p class = "mb-8 leading-relaxed">
+            Upload a clear image of the skin lesion and add patient name
+          </p>
+          <form action = "/upload" method = "POST" enctype = "multipart/form-data" class = "flex w-full md:justify-start justify-center items-end">
+            <div class = "relative mr-4 md:w-1/2 lg:w-1/3 xl:w-1/4 w-2/4">
+              <label for = "patient-name" class = "leading-7 text-sm text-gray-400">Add Patient Name</label>
+              <input type = "text" id = "patient-name" name = "patient-name" class = "w-full bg-gray-800 rounded bg-opacity-40 border border-gray-700 focus:ring-2 focus:ring-indigo-900 focus:bg-transparent focus:border-indigo-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+            </div>
+            <div class = "inline-flex items-center justify-center text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+              <label for = "skin-image-upload" class = "cursor-pointer flex items-center">
+                <svg xmlns = "http://www.w3.org/2000/svg" class = "h-6 w-6 mr-2" fill = "none" viewBox = "0 0 24 24" stroke = "currentColor">
+                  <path stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" d = "M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                Choose file
+              </label>
+              <input type = "file" name = "pic" accept = "image/*" class = "hidden" id = "skin-image-upload" onchange = "previewImage(event)"/>
+            </div>
+        </div>
+        <div class = "md:w-1/2 w-5/6">
+          <img id = "image-preview" class = "object-cover object-center rounded" alt = "hero" src = "https://dummyimage.com/720x600"/>
+          <form action = "/showresult" method = "post">
+          <div class = "mt-4" id = "button-container" style = "display: none;">
+            <button id = "process-button" type = "submit" name = "upload" class = "bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded transition duration-200">Process Image</button>
+        </form>
+          </div>
+          </div>
+          </form>
+          </div>
+          </section>
+    <script>
+      function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById("image-preview");
+        const buttonContainer = document.getElementById("button-container");
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function () {
+            preview.src = reader.result;
+            buttonContainer.style.display = "block";
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>

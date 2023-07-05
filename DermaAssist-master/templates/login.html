@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang = "en" >
+<head>
+  <meta charset = "UTF-8">
+  <title>DermaAssist</title>
+  <link rel = 'stylesheet' href = 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css'>
+</head>
+<body  class = "bg-gray-900">
+<header class = "text-gray-400 bg-gray-900 body-font">
+    <div class = "container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a href = "/" class = "flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <svg xmlns = "http://www.w3.org/2000/svg" fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox = "0 0 24 24">
+          <path d = "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span class = "ml-3 text-xl">DermaAssist</span>
+      </a>
+    </div>
+  </header>
+<section class = "text-gray-400 bg-gray-900 body-font relative">
+    <div class = "container px-5 py-12 mx-auto">
+      <div class = "flex flex-col text-center w-full mb-12">
+        <h1 class = "sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Login to your account</h1>
+        <p class = "lg:w-2/3 mx-auto leading-relaxed text-base">Please enter your personal details to login to your account</p>
+      </div>
+      <div class = "lg:w-1/2 md:w-2/3 mx-auto">
+        <div class = "flex flex-wrap -m-2 justify-center">
+          <form action = "/login" method = "post">
+          <div class = "p-2 w-full">
+            <div class = "relative">
+              <label for = "email" class = "leading-7 text-sm text-gray-400">Email</label>
+              <input type = "email" id = "email" name = "email" class = "w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+          </div>
+          <div class = "p-2 w-full">
+            <div class = "relative">
+              <label for = "password" class = "leading-7 text-sm text-gray-400">Password</label>
+              <input type = "password" id = "password" name = "password" class = "w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">            </div>
+          </div>
+          <div class = "p-2 w-full pt-4 mt-4 text-center">
+          <div class = "p-2 w-full">
+            <button type =  "submit" class = "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
+          </div>
+          <div class = "p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
+        </form>
+          <form action = "/signup" method = 'GET'>
+            <div class = "p-2 w-full">
+                <button class = "flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Sign Up</button>
+              </div>
+          </form>    
+      </div>
+    </div>
+  </section>
+  </body>
+  </html>

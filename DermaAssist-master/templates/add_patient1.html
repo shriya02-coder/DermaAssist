@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add a Patient Form</title>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.15/tailwind.min.css">
+    <style>
+		#detailsBox {
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #6c6868;
+                color: #333;
+                padding: 20px;
+                border: 2px solid #999;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                z-index: 9999;
+                max-width: 900px;
+                text-align: center;
+                font-size: 1.2rem;       
+        } 
+	</style>
+</head>
+<body class = "bg-gray-900">
+    <header class = "text-gray-400 bg-gray-900 body-font">
+        <div class = "container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a onclick = "window.location.href='/doctor'" class = "flex title-font font-medium items-center text-white mb-4 md:mb-0">
+            <svg xmlns = "http://www.w3.org/2000/svg" fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox = "0 0 24 24">
+              <path d = "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class = "ml-3 text-xl">DermaAssist</span>
+          </a>
+          <nav class = "md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a href = "/dashboard" class = "mr-5 hover:text-white">Home</a>
+            <a href = "/profile" class = "mr-5 hover:text-white">Profile</a>
+          </nav>
+          <button onclick = "window.location.href='/'" class = "inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">Logout
+            <svg fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-4 h-4 ml-1" viewBox = "0 0 24 24">
+              <path d = "M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+    <div class = "flex flex-col md:flex-row items-center justify-center" style = "max-width: 80%; margin: 0 auto;">
+        <div class = "md:w-1/2 p-10">
+            <script src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>   
+            <lottie-player src = "https://assets3.lottiefiles.com/packages/lf20_alyseq4q.json"  background = "transparent"  speed = "1"  style = "width: 400px; height: 400px;"  loop  autoplay></lottie-player>
+        </div>
+        <div class = "md:w-1/2 mx-auto px-10">
+            <section class = "text-gray-400 bg-gray-900 body-font relative">
+                <div class = "container px-5 py-12 mx-auto">
+                    <div class = "text-center mb-12">
+                        <h1 class = "sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Add patient</h1>
+                        <p class = "lg:w-2/3 mx-auto leading-relaxed text-base">Please fill in the details of the patient you want to add.</p>
+                    </div>
+                    <form action = "/patient1" id = "addDoctorForm" class = "flex flex-wrap -m-2" method = "post">
+                        <div class = "p-2 w-full">
+                            <div class = "relative">
+                                <label for = "doctor" class = "leading-7 text-sm text-gray-400">Doctor</label>
+                                <select id = "doctor" name = "doctor" class = "appearance-none block w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 py-2 px-4 pr-8 leading-tight focus:border-indigo-500 focus:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-900 text-gray-100 text-base transition-colors duration-200 ease-in-out">
+                                    <option disabled selected value = "">Choose a doctor</option>
+                                    {% for i in doclist %}
+                                        {% for key, value in i.items() %}
+                                    <option value = "{{value['name']}}">{{value['name']}}</option>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </select>
+                                <div class = "absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "p-2 w-full">
+                            <div class = "relative">
+                                <label for = "name" class = "leading-7 text-sm text-gray-400">Name</label>
+                                <input type = "text" id = "name" name = "pname" class = "w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class = "p-2 w-full">
+                            <div class = "relative">
+                                <label for = "email" class = "leading-7 text-sm text-gray-400">Email</label>
+                                <input type = "email" id = "email" name = "pemail" class = "w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class = "p-2 w-full">
+                            <div class = "relative">
+                                <label for = "contact" class = "leading-7 text-sm text-gray-400">Contact Number</label>
+                                <input type = "text" id = "contact" name = "pcontact" class = "w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-indigo-500 focus:bg-gray-900 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div>
+                        <div class = "p-2 w-full flex justify-end">
+                            <div class = "flex space-x-4">
+                                <button id = "clearBtn" class = "text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">Clear</button>
+                                <button id = "confirmBtn" type = 'submit' class = "text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Confirm</button>
+                            </div>
+                        </div>
+                    </form>
+                    <script>
+                       const form =  document.getElementById('addDoctorForm')
+                       form.addEventListener('onsubmit',(ele)=>{
+                        ele.preventDefault()
+                            console.log(ele.target)
+                       })
+                    </script>
+                </div>
+            </section>
+        </div>
+    </div>
+                    </section>     
+    <script>
+        // Add event listener for clear button
+        document.getElementById("clearBtn").addEventListener("click", function(event){
+            event.preventDefault();
+            document.getElementById("addDoctorForm").reset();
+        });
+    </script>
+</script>
+</body>
+</html>      
+</body>
+</html>
+

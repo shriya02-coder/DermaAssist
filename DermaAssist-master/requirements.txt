@@ -1,0 +1,10 @@
+Flask==1.1.2
+firebase-admin==4.5.0
+Jinja2==2.11.2
+pyrebase==3.0.27
+Flask-Session==0.3.2
+Pillow==7.2.0
+numpy==1.19.5
+twilio==6.59.0
+skin-cancer-detection==1.0.0
+PyPDF2==1.26.0

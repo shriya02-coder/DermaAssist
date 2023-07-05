@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Medical Report</title>
+	<!-- Load Tailwind CSS -->
+	<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+	<link rel = "stylesheet" href = "/static/css/style.css">
+	<!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+	<script src = "https://www.gstatic.com/firebasejs/9.20.0/firebase-app-compat.js"></script>
+	<script src = "https://www.gstatic.com/firebasejs/9.20.0/firebase-storage-compat.js"></script> -->
+	<!-- <script type = "module">
+		
+	import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js';
+	import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/9.20.0/firebase-storage.js'; 
+
+
+	</script>	 -->
+</head>
+<body class = "bg-gray-900">
+	<header class = "text-gray-400 bg-gray-900 body-font">
+        <div class = "container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+          <a class = "flex title-font font-medium items-center text-white mb-4 md:mb-0">
+            <svg xmlns = "http://www.w3.org/2000/svg" fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox = "0 0 24 24">
+              <path d = "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class = "ml-3 text-xl">DermaAssist</span>
+          </a>
+          <nav class = "md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a class = "mr-5 hover:text-white">Home</a>
+            <a class = "mr-5 hover:text-white">Profile</a>
+          </nav>
+          <button class = "inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">Logout
+            <svg fill = "none" stroke = "currentColor" stroke-linecap = "round" stroke-linejoin = "round" stroke-width = "2" class = "w-4 h-4 ml-1" viewBox = "0 0 24 24">
+              <path d = "M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+	<!-- MEDICAL DOCUMENT TEMPLATE -->
+		<div class = "container mx-auto px-6 py-8  text-white">
+			<div class = "bg-gray-200 rounded-lg shadow-lg">
+				<div class = " border-b-2 border-gray-600 container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+					<div class = "header flex justify-between items-center title-font font-medium items-center text-white mb-4 md:mb-0">
+						<!-- <img src = "/static/" alt = "Hospital Logo" class = "w-10 h-10"> -->
+						<span class = " text-gray-900 ml-3 text-2xl font-bold">Jupiter Hospital</span>
+					</div>
+					<div class = "md:ml-auto text-right">
+						<p class = " text-gray-400">Address: 123 Jupiter Hosiptal, Thane, Maharashtra 12345</p>
+						<p class = "text-gray-400">Phone: +86575 37578</p>
+					</div>
+				</div>
+				<div class = "header flex justify-between items-center px-6 py-4 border-b-2 border-gray-200">
+					<p class = "font-bold text-gray-900 text-lg">Patient Information</p>
+				</div>
+				<div class = "patient-data mb-4 px-6">
+					<div class = "flex justify-between items-center py-2">
+						<p class = "text-gray-600 font-bold">Patient Name:</p>
+						<p class = "text-gray-600">{{patient_name}}</p>
+						</div>
+						<div class = "flex justify-between items-center py-2">
+							<p class = "text-gray-600 font-bold">Email:</p>
+							<p class = "text-gray-600">{{patient_email}}</p>
+						</div>
+						<div class = " flex justify-between items-center py-2">
+							<p class = "text-gray-600 font-bold">Phone number:</p>
+							<p class = "text-gray-600">{{patient_phone}}</p>
+						</div>
+					</div>
+					<div class = " border-t-2 border-gray-400 header flex justify-between items-center px-6 py-4">
+						<p class = "font-bold text-gray-900 text-lg">Diagnosis Information</p>
+					</div>
+					<div class = "diagnosis mb-4 px-6">
+						<div class = "flex justify-between items-center py-2">
+							<p class = "text-gray-600 font-bold">Diagnosis:</p>
+							<p class = "text-gray-600">{{result}}</p>
+						</div>
+						<div class = "flex justify-between items-center py-2">
+							<p class = "text-gray-600 font-bold">Notes: N/A</p>
+						</div>
+					</div>
+					<div class = "signature px-6 py-4">
+						<div class = "flex justify-between items-center py-2 rounded-lg">
+							<p class = "text-gray-600 font-bold">Signed by:</p>
+							<input type = "text" name = "doctorName" id='signaturedoc' class = "border border-gray-400 text-gray-800 text-gray-400  border-gray-400 rounded-lg focus:outline-none focus:border-indigo-500" >
+						</div>
+						 <div class = "flex justify-between items-center py-2">
+							<p class = "text-gray-600 font-bold">Digital signature:</p>
+							<div class = "relative">
+							  <canvas id = "signatureCanvas" class = "border border-gray-400 rounded-lg"></canvas>
+							  <button id = "clearButton" class = "text-gray-500 absolute top-0 right-0 px-2 py-1">
+								<svg xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 20 20" fill = "currentColor" width = "20" height = "20">
+								  <path fill-rule = "evenodd" d = "M11.414 10l4.293-4.293a1 1 0 1 0-1.414-1.414L10 8.586 5.707 4.293a1 1 0 0 0-1.414 1.414L8.586 10l-4.293 4.293a1 1 0 1 0 1.414 1.414L10 11.414l4.293 4.293a1 1 0 1 0 1.414-1.414L11.414 10z" clip-rule = "evenodd" />
+								</svg>
+							  </button>
+							</div>
+						  </div>
+					</div>
+				</div>
+			</div>
+			<form action = "/report" method = "post" id = "form">
+			<div class = "bg-gray-900 flex justify-end mr-10">
+				<button id = "pdf" type = 'submit'class = "py-2 px-4 text-white bg-gray-800 hover:bg-gray-700 rounded mr-2" data-valid-name="{{ first_name }}"style="display:none;">
+					Generate PDF
+				</button>
+				<button class = "py-2 px-4 text-white bg-indigo-500 hover:bg-indigo-600 rounded">
+					Mail PDF
+				</button>
+			</div>
+			</form>
+		</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script> -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-storage.js"></script>
+
+	<script>
+
+const doctorNameInput = document.getElementById('signaturedoc');
+const generatePdfButton = document.getElementById('pdf');
+const validName = generatePdfButton.getAttribute('data-valid-name');
+
+doctorNameInput.addEventListener('input', function() {
+  if (doctorNameInput.value === validName) {
+    generatePdfButton.style.display = 'block';
+  } else {
+    generatePdfButton.style.display = 'none';
+  }
+});
+        var firebaseConfig = {
+            apiKey: "AIzaSyAR0XBuGC2yywq-q1DfQKfLl26LKk6l9K8",
+            authDomain: "fir-try-28f01.firebaseapp.com",
+            databaseURL: "https://fir-try-28f01-default-rtdb.firebaseio.com",
+            projectId: "fir-try-28f01",
+            storageBucket: "fir-try-28f01.appspot.com",
+            messagingSenderId: "588321601903",
+            appId: "1:588321601903:web:e072797fc9189e9465d09a",
+            measurementId: "G-04938M5W17"
+        };
+        firebase.initializeApp(firebaseConfig);
+        console.log(firebaseConfig)
+        // Get a reference to the storage service
+        var storage = firebase.storage();
+        var form = document.getElementById("form");
+		
+        // Add an event listener to the form's submit event
+        form.addEventListener("submit", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+    
+            // Delay the form submission
+            setTimeout(function() {
+            // Submit the form manually
+            form.submit();
+            }, 50000); // Wait for 5 seconds before submitting the form
+        });
+		// var generatePdfButton = document.getElementById('pdf');
+generatePdfButton.addEventListener('click', function() {
+  html2canvas(document.body, {
+    onrendered: function(canvas) {
+      var imgData = canvas.toDataURL('image/png');
+	  var pageWidth = document.body.offsetWidth;
+	var pageHeight = document.body.offsetHeight;
+	var pageWidthInPoints = pageWidth * 0.75;
+	var pageHeightInPoints = pageHeight * 0.75;
+      var doc = new jsPDF({
+			format: [pageWidthInPoints, pageHeightInPoints]
+			// orientation: 'landscape'
+			});
+      doc.addImage(imgData, 'PNG', 0.001, 0.001);
+      var pdfData = doc.output('datauristring');
+
+      // Upload the PDF to Firebase storage here
+		var storageRef = firebase.storage().ref();
+		var pdfRef = storageRef.child('pdfs/myPdf.pdf');
+		pdfRef.putString(pdfData, 'data_url').then(function(snapshot) {
+		console.log('Uploaded a data_url string!');
+		});
+    }
+  });
+});
+
+	</script>
+	<!-- <script>
+	// Add event listener to the button
+	const fun = (ele) =>{
+		console.log(ele)
+		return false
+	}
+	// document.getElementById('form').addEventListener('onsubmit', function(ele) {
+	// 	// ele.preventDefault()
+	// 	console.log('asd')
+	// 	// Use jsPDF to convert window.print() result to PDF
+	// 	var doc = new jsPDF();
+	// 	doc.addHTML(document.body, function() {
+	// 		// Create a reference to Firebase Storage location
+	// 		const storageRef = ref(storage, 'reports/newwebpage.pdf');
+
+	// 		// Convert PDF to blob
+	// 		var blob = doc.output('blob');
+
+	// 		// Upload blob to Firebase Storage
+	// 		uploadBytes(storageRef, blob).then(function(snapshot) {
+	// 			console.log('PDF uploaded successfully!');
+	// 		}).catch(function(error) {
+	// 			console.error('Error uploading PDF: ', error);
+	// 		});
+	// 	});
+	// });
+	</script> -->
+	<script>
+	const canvas = document.getElementById('signatureCanvas');
+	const ctx = canvas.getContext('2d');
+	
+	canvas.width = canvas.parentElement.clientWidth;
+	canvas.height = canvas.parentElement.clientHeight;
+	
+	const clearButton = document.getElementById('clearButton');
+	clearButton.addEventListener('click', () => {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+	});
+	
+	let isDrawing = false;
+	let lastX, lastY;
+	
+	canvas.addEventListener('mousedown', (e) => {
+		isDrawing = true;
+		[lastX, lastY] = [e.offsetX, e.offsetY];
+		});
+  
+	canvas.addEventListener('mousemove', (e) => {
+	  if (isDrawing) {
+		ctx.beginPath();
+		ctx.moveTo(lastX, lastY);
+		ctx.lineTo(e.offsetX, e.offsetY);
+		ctx.stroke();
+		[lastX, lastY] = [e.offsetX, e.offsetY];
+	  }
+	});
+  
+	canvas.addEventListener('mouseup', () => {
+	  isDrawing = false;
+	});
+  
+	canvas.addEventListener('mouseout', () => {
+	  isDrawing = false;
+	});
+    </script>
+</body>
+</html>
