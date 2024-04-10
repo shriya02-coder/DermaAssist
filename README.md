@@ -1,4 +1,9 @@
-# DermaAssist: An automated classification system for detection of skin cancer using ML 
+# DermaAssist: Deep Learning for Skin Disease Diagnosis with End-to-End Data Security
+
+## Publication
+Pingulkar, S., Divekar, D. and Tiwary, A., 2023, November. Deep Learning for Skin Disease Diagnosis with End-to-End Data Security. In 2023 Second International Conference on Informatics (ICI) (pp. 1-6). IEEE.
+
+## Application Images
 ![image](https://github.com/DITI2209/DermaAssist/assets/87538625/a4ba485e-37bc-4404-ba32-d17a58b6aadd)
 ![image](https://github.com/DITI2209/DermaAssist/assets/87538625/5c92a268-58d8-4aef-8e87-9077053d75fb)
 ![image](https://github.com/DITI2209/DermaAssist/assets/87538625/081b8487-30b1-45a9-b05c-d9d522ccda30)
@@ -12,7 +17,6 @@
 - [Team](#team)
 
 ## Scope
-
 The scope of this project is to develop a comprehensive skin lesion disease detection system that can accurately diagnose skin diseases with the help of CNN, supporting clinical decision-making by providing pathologists with the highest probability diagnoses. The system will use image processing techniques to analyse skin images and provide pathologists with an accurate diagnosis in a timely manner. The system will be able to differentiate between various types of skin lesions, including cancerous and non-cancerous lesions.
 
 The system will also enable pathologists to generate medical reports based on the diagnosis, which will include all relevant information about the patient's condition. It will also include a database to store patient data and medical reports.
