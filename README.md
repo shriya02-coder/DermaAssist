@@ -1,8 +1,5 @@
 # DermaAssist: Deep Learning for Skin Disease Diagnosis with End-to-End Data Security
 
-## Publication
-Pingulkar, S., Divekar, D. and Tiwary, A., 2023, November. Deep Learning for Skin Disease Diagnosis with End-to-End Data Security. In 2023 Second International Conference on Informatics (ICI) (pp. 1-6). IEEE.
-
 ## Application Images
 ![image](https://github.com/DITI2209/DermaAssist/assets/87538625/a4ba485e-37bc-4404-ba32-d17a58b6aadd)
 ![image](https://github.com/DITI2209/DermaAssist/assets/87538625/5c92a268-58d8-4aef-8e87-9077053d75fb)
